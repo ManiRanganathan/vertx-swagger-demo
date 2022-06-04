@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="ConfigTest" status="WARN" monitorInterval="5">
+  <Appenders>
+    <SystemPropertyArbiter propertyName="env" propertyValue="dev">
+      <Console name="Out" target="SYSTEM_OUT">
+        <PatternLayout pattern="%logger{36} - %m%n"/>
+      </Console>
+    </SystemPropertyArbiter>
+    <SystemPropertyArbiter propertyName="env" propertyValue="prod">
+      <Console name="Out" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%t] %c{2.}.%M(:%L) - %msg%n"/>
+      </Console>
+    </SystemPropertyArbiter>
+    <DefaultArbiter>
+      <Console name="Out" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%t] %C{3.}.%M(:%L) - %msg%n"/>
+      </Console>
+    </DefaultArbiter>
+  </Appenders>
+  <Loggers>
+    <Logger name="com.mani.experiment" level="info" additivity="false">
+      <AppenderRef ref="Out"/>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="Out"/>
+    </Root>
+  </Loggers>
+</Configuration>
